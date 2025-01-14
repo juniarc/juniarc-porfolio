@@ -3,19 +3,61 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #f9ebd4;
+  --foreground: #263253;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-roboto-mono), sans-serif;
+}
+
+.refreshing {
+  visibility: hidden;
+  opacity: 0;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-righteous);
+}
+
+.link-text {
+  position: relative;
+  display: inline-block;
+}
+
+.link-text::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--foreground);
+  transition: width 0.3s ease;
+}
+
+.link-text:hover::after {
+  width: 100%;
+}
+
+.link-text.active::after {
+  width: 100%;
+}
+
+.link-text.moved::after,
+.link-text.moved:hover::after {
+  @apply bg-white;
+}
+
+.blur-effect {
+  @apply bg-black backdrop-filter backdrop-blur bg-opacity-30 ease-out;
+}
+
+.char {
+  font-kerning: none;
 }

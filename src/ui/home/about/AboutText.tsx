@@ -39,62 +39,63 @@ export default function AboutText({
 
     gsap.registerPlugin(ScrollTrigger);
 
-    ScrollTrigger.create({
-      trigger: containerRef.current,
-      start: "top top",
-      end: `+=${scrollDuration}px`,
-      scrub: true,
-      pin: true,
-    });
-
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top top",
-        end: `+=${scrollDuration}px`,
-        scrub: true,
-      },
-    });
-
-    if (textRef.current) {
-      const splitedText = new SplitType(textRef.current, {
-        types: "words,chars",
+    if (sectionHeight !== 0) {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top top",
+          end: `+=${scrollDuration}px`,
+          scrub: true,
+          pin: true,
+        },
       });
 
-      tl.from(titleRef.current, {
-        yPercent: 100,
-        ease: "power4.out",
-        duration: 3,
-        delay: 1.5,
-      })
-        .from(textRef.current, {
-          opacity: 0,
-          ease: "power4.out",
-          duration: 3,
-        })
-        .fromTo(
-          splitedText.chars,
-          {
-            filter: "blur(4px)",
-          },
-          {
-            filter: "blur(0px)",
-            stagger: 0.1,
-            duration: 1,
-          },
-          6
-        );
-    }
+      if (textRef.current) {
+        const splitedText = new SplitType(textRef.current, {
+          types: "words,chars",
+        });
 
-    tl.from(
-      squareRef.current,
-      {
-        opacity: 0,
-        duration: 3,
-        ease: "power4.out",
-      },
-      1.5
-    );
+        tl.fromTo(
+          titleRef.current,
+          {
+            yPercent: 100,
+          },
+          {
+            yPercent: 0,
+            ease: "power4.out",
+            duration: 3,
+            delay: 1.5,
+          }
+        )
+          .from(textRef.current, {
+            opacity: 0,
+            ease: "power4.out",
+            duration: 3,
+          })
+          .fromTo(
+            splitedText.chars,
+            {
+              filter: "blur(4px)",
+            },
+            {
+              filter: "blur(0px)",
+              stagger: 0.1,
+              duration: 1,
+            },
+            6
+          );
+      }
+
+      tl.from(
+        squareRef.current,
+        {
+          opacity: 0,
+          duration: 3,
+          ease: "power4.out",
+        },
+        1.5
+      );
+    }
   }, [sectionRef.current?.clientHeight]);
   return (
     <div
@@ -104,7 +105,7 @@ export default function AboutText({
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
         <div className="relative w-[80vw] h-[60vh]">
           <div ref={titleContainerRef} className="overflow-hidden w-fit pr-8">
-            <h2 ref={titleRef} className="text-9xl tracking-tighter">
+            <h2 ref={titleRef} className="text-9xl tracking-tighter relative">
               about me
             </h2>
           </div>

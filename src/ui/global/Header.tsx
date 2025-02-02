@@ -8,10 +8,14 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
+import { useTransitionContext } from "@/hooks/TransitionContext";
 
 gsap.registerPlugin(useGSAP);
 
 export default function Header() {
+  const { setIsNavigate, startAnimation, setStartAnimation } =
+    useTransitionContext();
+
   const pathname = usePathname();
 
   const headerRef = useRef<HTMLDivElement>(null);
@@ -34,74 +38,76 @@ export default function Header() {
 
     const tl = gsap.timeline();
 
-    tl.from(centerRef.current, {
-      y: -100,
-      opacity: 0,
-      duration: 1.5,
-      ease: "power4.out",
-      delay: delay,
-    })
-      .from(
-        leftRef.current,
-        {
-          y: -100,
-          opacity: 0,
-          duration: 1.5,
-          ease: "power4.out",
-          delay: delay,
+    if (startAnimation) {
+      tl.from(centerRef.current, {
+        y: -100,
+        opacity: 0,
+        duration: 1.5,
+        ease: "power4.out",
+        delay: delay,
+      })
+        .from(
+          leftRef.current,
+          {
+            y: -100,
+            opacity: 0,
+            duration: 1.5,
+            ease: "power4.out",
+            delay: delay,
+          },
+          0
+        )
+        .from(
+          rightRef.current,
+          {
+            y: -100,
+            opacity: 0,
+            duration: 1.5,
+            ease: "power4.out",
+            delay: delay,
+          },
+          0
+        );
+
+      ScrollTrigger.create({
+        trigger: "header",
+        start: "center top",
+        endTrigger: document.documentElement,
+        end: () => `+=${document.documentElement.scrollHeight}`, // This will set the end trigger to the bottom of the document
+        scrub: true,
+        onEnter: () => {
+          if (centerBgRef.current) {
+            centerBgRef.current.classList.add("blur-effect");
+          }
+
+          if (linkRef.current) {
+            linkRef.current.classList.add("text-white");
+            linkRef.current.classList.add("moved");
+          }
+
+          const activeLinks = linkRef.current?.querySelectorAll("a");
+          activeLinks?.forEach((link) => {
+            link.classList.add("moved");
+          });
         },
-        0
-      )
-      .from(
-        rightRef.current,
-        {
-          y: -100,
-          opacity: 0,
-          duration: 1.5,
-          ease: "power4.out",
-          delay: delay,
+        onLeaveBack: () => {
+          if (centerBgRef.current) {
+            centerBgRef.current.classList.remove("blur-effect");
+          }
+
+          if (linkRef.current) {
+            linkRef.current.classList.remove("text-white");
+            linkRef.current.classList.remove("moved");
+          }
+
+          const activeLinks = linkRef.current?.querySelectorAll("a");
+          activeLinks?.forEach((link) => {
+            link.classList.remove("moved");
+          });
         },
-        0
-      );
-
-    ScrollTrigger.create({
-      trigger: "header",
-      start: "center top",
-      endTrigger: document.documentElement,
-      end: () => `+=${document.documentElement.scrollHeight}`, // This will set the end trigger to the bottom of the document
-      scrub: true,
-      onEnter: () => {
-        if (centerBgRef.current) {
-          centerBgRef.current.classList.add("blur-effect");
-        }
-
-        if (linkRef.current) {
-          linkRef.current.classList.add("text-white");
-          linkRef.current.classList.add("moved");
-        }
-
-        const activeLinks = linkRef.current?.querySelectorAll("a");
-        activeLinks?.forEach((link) => {
-          link.classList.add("moved");
-        });
-      },
-      onLeaveBack: () => {
-        if (centerBgRef.current) {
-          centerBgRef.current.classList.remove("blur-effect");
-        }
-
-        if (linkRef.current) {
-          linkRef.current.classList.remove("text-white");
-          linkRef.current.classList.remove("moved");
-        }
-
-        const activeLinks = linkRef.current?.querySelectorAll("a");
-        activeLinks?.forEach((link) => {
-          link.classList.remove("moved");
-        });
-      },
-    });
-  }, []);
+      });
+    }
+  }, [pathname, startAnimation]);
 
   return (
     <header>
@@ -126,6 +132,10 @@ export default function Header() {
                   return (
                     <li key={index}>
                       <Link
+                        onClick={() => {
+                          setIsNavigate(true);
+                          setStartAnimation(false);
+                        }}
                         href={href}
                         className={`link-text ${pathname === href ? "active" : ""}`}
                       >
@@ -141,12 +151,12 @@ export default function Header() {
         <div ref={rightRef} className="opacity-100">
           <ul className="flex items-center gap-5">
             <li>
-              <Link href="/">
+              <Link href="https://linkedin.com/in/cahyajuniar" target="_blank">
                 <FaLinkedin className="text-2xl" />
               </Link>
             </li>
             <li>
-              <Link href="/">
+              <Link href="https://github.com/juniarc" target="_blank">
                 <FaGithub className="text-2xl" />
               </Link>
             </li>

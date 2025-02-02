@@ -39,17 +39,20 @@ export default function Footer() {
           <div>
             <ul className="flex items-center gap-5">
               <li>
-                <Link href="/">
+                <Link
+                  href="https://linkedin.com/in/cahyajuniar"
+                  target="_blank"
+                >
                   <FaLinkedin className="text-4xl" />
                 </Link>
               </li>
               <li>
-                <Link href="/">
+                <Link href="https://github.com/juniarc" target="_blank">
                   <FaGithub className="text-4xl" />
                 </Link>
               </li>
               <li>
-                <Link href="/">
+                <Link href="https://instagram.com/juniarc_" target="_blank">
                   <FaInstagram className="text-4xl" />
                 </Link>
               </li>

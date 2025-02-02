@@ -238,8 +238,9 @@ const FlickeringGrid: React.FC<FlickeringGridProps> = ({
       end: "top top",
       pin: true,
       scrub: true,
+      pinSpacing: false,
     });
-  });
+  }, []);
 
   return (
     <div ref={containerRef} className={`w-full h-full ${className}`}>

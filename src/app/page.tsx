@@ -8,7 +8,7 @@ import Works from "@/ui/home/work/Works";
 export default function Home() {
   return (
     <GSAPProvider>
-      <main className="max-w-screen overflow-hidden">
+      <main className="max-w-screen overflow-hidden mb-10">
         <section className="h-[65vh] flex flex-col justify-end items-center">
           <HeroText />
           <InfiniteText />

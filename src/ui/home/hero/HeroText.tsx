@@ -2,9 +2,11 @@
 
 import { useRef } from "react";
 import { useGSAPContext } from "@/providers/gsapContext";
+import { useTransitionContext } from "@/hooks/TransitionContext";
 
 export default function HeroText() {
   const { gsap, useGSAP } = useGSAPContext();
+  const { startAnimation } = useTransitionContext();
 
   const text = "JUNIARC";
   const textRef = useRef<HTMLHeadingElement>(null);
@@ -12,16 +14,16 @@ export default function HeroText() {
   useGSAP(() => {
     const chars = textRef.current?.querySelectorAll("span");
 
-    if (chars) {
-      gsap.from(chars, {
-        yPercent: 100,
+    if (chars && startAnimation) {
+      gsap.to(chars, {
+        translateY: 0,
         duration: 1,
         ease: "power4.out",
         stagger: 0.05,
         delay: 1,
       });
     }
-  }, []);
+  }, [startAnimation]);
 
   return (
     <div className="w-full px-10">
@@ -32,7 +34,7 @@ export default function HeroText() {
         {text.split("").map((char, index) => (
           <span
             key={index}
-            className={`inline-block opacity-100 ${index === text.length - 1 && "text-orange"}`}
+            className={`inline-block opacity-100 translate-y-full ${index === text.length - 1 && "text-orange"}`}
           >
             {char}
           </span>

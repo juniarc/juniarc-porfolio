@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/ui/global/Header";
 import SmoothScrolling from "@/providers/SmoothScrolling";
 import FlickeringGrid from "@/ui/global/FlickeringGrid";
+import { TransitionProvider } from "@/hooks/TransitionContext";
 
 const righteous = localFont({
   src: "../../public/fonts/Righteous-Regular.ttf",
@@ -28,17 +29,19 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${robotoMono.variable} ${righteous.variable} antialiased overflow-hidden`}
+        className={`${robotoMono.variable} ${righteous.variable} antialiased max-h-fit overflow-hidden`}
       >
         <FlickeringGrid
-          className="z-0 absolute inset-0 size-full opacity-10"
+          className="z-0 absolute inset-0 size-full opacity-10 pointer-events-none"
           squareSize={48}
           gridGap={0}
           maxOpacity={0.5}
           flickerChance={0.5}
         />
-        <Header />
-        <SmoothScrolling>{children}</SmoothScrolling>
+        <TransitionProvider>
+          <Header />
+          <SmoothScrolling>{children}</SmoothScrolling>
+        </TransitionProvider>
       </body>
     </html>
   );

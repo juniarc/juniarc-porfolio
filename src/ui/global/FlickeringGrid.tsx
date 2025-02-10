@@ -220,27 +220,35 @@ const FlickeringGrid: React.FC<FlickeringGridProps> = ({
     };
   }, [setupCanvas, updateSquares, drawGrid, width, height, isInView]);
 
-  useGSAP(async () => {
-    const ScrollTrigger = (await import("gsap/ScrollTrigger")).ScrollTrigger;
-    gsap.registerPlugin(ScrollTrigger);
+  useGSAP(
+    () => {
+      const activateScrollTrigger = async () => {
+        const ScrollTrigger = (await import("gsap/ScrollTrigger"))
+          .ScrollTrigger;
+        gsap.registerPlugin(ScrollTrigger);
 
-    const delay = 3.5;
+        const delay = 3.5;
 
-    gsap.from(canvasRef.current, {
-      opacity: 0,
-      duration: 1,
-      delay: delay,
-    });
-    ScrollTrigger.create({
-      trigger: containerRef.current,
-      start: "top top",
-      endTrigger: "footer",
-      end: "top top",
-      pin: true,
-      scrub: true,
-      pinSpacing: false,
-    });
-  }, []);
+        gsap.from(canvasRef.current, {
+          opacity: 0,
+          duration: 1,
+          delay: delay,
+        });
+        ScrollTrigger.create({
+          trigger: containerRef.current,
+          start: "top top",
+          endTrigger: "footer",
+          end: "top top",
+          pin: true,
+          scrub: true,
+          pinSpacing: false,
+        });
+      };
+      activateScrollTrigger();
+    },
+
+    { dependencies: [] }
+  );
 
   return (
     <div ref={containerRef} className={`w-full h-full ${className}`}>

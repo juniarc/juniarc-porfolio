@@ -114,6 +114,9 @@ h4 {
   z-index: -1;
   transition: height 0.3s ease;
 }
+.outline-text.text-dark-blue::after {
+  @apply bg-orange;
+}
 
 .outline-text:hover::after {
   height: 20%;

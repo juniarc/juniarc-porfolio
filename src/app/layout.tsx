@@ -27,7 +27,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${robotoMono.variable} ${righteous.variable} antialiased max-h-fit overflow-hidden`}
       >

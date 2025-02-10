@@ -5,9 +5,11 @@ import MyImage from "@/../public/images/me.webp";
 import { useGSAPContext } from "@/providers/gsapContext";
 import { useRef } from "react";
 import AnimatedSquares from "../others/AnimatedSquares";
+import { useMountedContext } from "@/hooks/MountContex";
 
 export default function AboutSection() {
   const { gsap, useGSAP, ScrollTrigger } = useGSAPContext();
+  const { isMounted } = useMountedContext();
 
   const circleRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLHeadingElement>(null);
@@ -61,6 +63,8 @@ export default function AboutSection() {
     },
     { dependencies: [textRef.current?.clientHeight] }
   );
+
+  if (!isMounted) return;
   return (
     <div ref={containerRef} className="relative">
       <div
@@ -72,6 +76,7 @@ export default function AboutSection() {
             src={MyImage}
             className="w-full h-3/5 object-cover object-bottom"
             alt="About Me Photo"
+            priority
           />
           <div className=" mt-10 w-10 aspect-square rotate-90">
             <AnimatedSquares />

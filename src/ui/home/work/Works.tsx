@@ -1,3 +1,5 @@
+"use client";
+
 import { AiFillHtml5 } from "react-icons/ai";
 import Arva from "./Arva";
 import Title from "./Title";
@@ -11,8 +13,12 @@ import {
 import { RiNextjsFill, RiTailwindCssFill } from "react-icons/ri";
 import { SiMysql } from "react-icons/si";
 import { workItemData } from "@/data/data";
+import { useMountedContext } from "@/hooks/MountContex";
 
 export default function Works() {
+  const { isMounted } = useMountedContext();
+
+  if (!isMounted) return;
   return (
     <div>
       <Title />

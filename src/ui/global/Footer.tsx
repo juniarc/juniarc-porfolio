@@ -11,7 +11,7 @@ export default function Footer() {
   const textRef = useRef<HTMLHeadingElement>(null);
 
   return (
-    <footer className="h-screen w-full px-10 py-5 text-background flex flex-col justify-between relative">
+    <footer className="h-screen max-w-screen w-full px-10 py-5 text-background flex flex-col justify-between relative">
       <div className="bg-dark-blue absolute top-0 left-0 w-full h-screen -z-10"></div>
       <div className="w-full relative">
         <h2 className="text-9xl tracking-tighter flex leading-none text-background">

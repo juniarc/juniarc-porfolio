@@ -1,167 +1,175 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import Logo from "@/../../public/logo/logo.svg";
-import Image from "next/image";
-import { FaLinkedin, FaGithub } from "react-icons/fa";
+import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { useGSAP } from "@gsap/react";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { useTransitionContext } from "@/hooks/TransitionContext";
+import { useLenis } from "lenis/react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(useGSAP);
 
 export default function Header() {
-  const { setIsNavigate, startAnimation, setStartAnimation } =
-    useTransitionContext();
-
+  const lenis = useLenis();
   const pathname = usePathname();
 
+  const { setIsNavigate, startAnimation, setStartAnimation } =
+    useTransitionContext();
+  const [isNavOpen, setNavOpen] = useState(false);
+
   const headerRef = useRef<HTMLDivElement>(null);
-  const leftRef = useRef<HTMLAnchorElement>(null);
-  const centerRef = useRef<HTMLDivElement>(null);
-  const centerBgRef = useRef<HTMLDivElement>(null);
-  const linkRef = useRef<HTMLUListElement>(null);
-  const rightRef = useRef<HTMLDivElement>(null);
+
+  const [isComplete, setComplete] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [isHidden, setHidden] = useState(false);
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > lastScrollY) {
+        setHidden(true);
+      } else {
+        setHidden(false);
+      }
+      setLastScrollY(window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
-  useGSAP(async () => {
-    const ScrollTrigger = (await import("gsap/ScrollTrigger")).ScrollTrigger;
-
-    gsap.registerPlugin(ScrollTrigger);
-
-    const delay = 2.5;
-
-    const tl = gsap.timeline();
-
-    if (startAnimation) {
-      tl.from(centerRef.current, {
-        y: -100,
-        opacity: 0,
-        duration: 1.5,
-        ease: "power4.out",
-        delay: delay,
-      })
-        .from(
-          leftRef.current,
-          {
-            y: -100,
-            opacity: 0,
-            duration: 1.5,
-            ease: "power4.out",
-            delay: delay,
-          },
-          0
-        )
-        .from(
-          rightRef.current,
-          {
-            y: -100,
-            opacity: 0,
-            duration: 1.5,
-            ease: "power4.out",
-            delay: delay,
-          },
-          0
-        );
-
-      ScrollTrigger.create({
-        trigger: "header",
-        start: "center top",
-        endTrigger: document.documentElement,
-        end: () => `+=${document.documentElement.scrollHeight}`, // This will set the end trigger to the bottom of the document
-        scrub: true,
-        onEnter: () => {
-          if (centerBgRef.current) {
-            centerBgRef.current.classList.add("blur-effect");
-          }
-
-          if (linkRef.current) {
-            linkRef.current.classList.add("text-white");
-            linkRef.current.classList.add("moved");
-          }
-
-          const activeLinks = linkRef.current?.querySelectorAll("a");
-          activeLinks?.forEach((link) => {
-            link.classList.add("moved");
-          });
-        },
-        onLeaveBack: () => {
-          if (centerBgRef.current) {
-            centerBgRef.current.classList.remove("blur-effect");
-          }
-
-          if (linkRef.current) {
-            linkRef.current.classList.remove("text-white");
-            linkRef.current.classList.remove("moved");
-          }
-
-          const activeLinks = linkRef.current?.querySelectorAll("a");
-          activeLinks?.forEach((link) => {
-            link.classList.remove("moved");
-          });
-        },
-      });
+    if (isNavOpen) {
+      document.body.style.overflow = "hidden";
+      lenis?.stop();
+    } else {
+      document.body.style.overflow = "";
+      lenis?.start();
     }
-  }, [pathname, startAnimation]);
 
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isNavOpen]);
+
+  useGSAP(
+    () => {
+      if (startAnimation) {
+        gsap.from(headerRef.current, {
+          yPercent: -100,
+          duration: 1.5,
+          delay: 2.5,
+          pointerEvents: "none",
+          ease: "power4.out",
+          onComplete: () => setComplete(true),
+        });
+      }
+    },
+    { dependencies: [startAnimation] }
+  );
+
+  const handleBurgerBtn = () => {
+    setNavOpen(!isNavOpen);
+  };
   return (
-    <header>
-      <div ref={headerRef} className="flex items-center justify-between p-10">
-        <Link ref={leftRef} href="/" className="opacity-100">
-          <Image src={Logo} alt="logo" />
-        </Link>
+    <header
+      ref={headerRef}
+      className="fixed top-0 left-0 w-screen z-50 pointer-events-auto"
+    >
+      <div className="relative">
         <div
-          ref={centerRef}
-          className="fixed left-1/2 -translate-x-1/2 mt-6 top-0 opacity-100 z-50"
+          className={`w-full flex items-center justify-between px-4 py-3 transition-all duration-100 ease-in ${
+            !isNavOpen &&
+            (isHidden
+              ? "-translate-y-full"
+              : `translate-y-0 ${lastScrollY !== 0 && "bg-background"}`)
+          }`}
         >
-          <div className="relative py-4">
-            <div
-              ref={centerBgRef}
-              className="absolute w-full h-full rounded-full -top-1/2 translate-y-1/2 transition-all duration-500"
-            ></div>
-            <div className="px-10">
-              <ul ref={linkRef} className="flex items-center gap-5">
-                {["/", "/works", "/about"].map((href, index) => {
-                  const text =
-                    href === "/" ? "INDEX" : href.slice(1).toUpperCase();
-                  return (
-                    <li key={index}>
-                      <Link
-                        onClick={() => {
-                          setIsNavigate(true);
-                          setStartAnimation(false);
-                        }}
-                        href={href}
-                        className={`link-text ${pathname === href ? "active" : ""}`}
-                      >
-                        {text}
-                      </Link>
-                    </li>
-                  );
-                })}
-              </ul>
+          <Link href="/">
+            <Image src={Logo} alt="logo" />
+          </Link>
+          <button
+            onClick={handleBurgerBtn}
+            className={`border-[0.2px] p-2 rounded z-50 ${isNavOpen ? "border-background" : "border-foreground"} `}
+          >
+            <div className="group grid justify-items-center gap-[3px]">
+              <span
+                className={`h-[1px] w-4 rounded-full transition  ${
+                  isNavOpen
+                    ? "rotate-45 translate-y-1 bg-background"
+                    : "bg-foreground"
+                }`}
+              ></span>
+              <span
+                className={`h-[1px] w-4 rounded-full transition ${
+                  isNavOpen ? "scale-x-0 bg-background" : "bg-foreground"
+                }`}
+              ></span>
+              <span
+                className={`h-[1px] w-4 rounded-full transition  ${
+                  isNavOpen
+                    ? "-rotate-45 -translate-y-1 bg-background"
+                    : "bg-foreground"
+                }`}
+              ></span>
             </div>
-          </div>
+          </button>
         </div>
-        <div ref={rightRef} className="opacity-100">
-          <ul className="flex items-center gap-5">
-            <li>
-              <Link href="https://linkedin.com/in/cahyajuniar" target="_blank">
-                <FaLinkedin className="text-2xl" />
-              </Link>
-            </li>
-            <li>
-              <Link href="https://github.com/juniarc" target="_blank">
-                <FaGithub className="text-2xl" />
-              </Link>
-            </li>
-          </ul>
-        </div>
+        {isComplete && (
+          <nav
+            className={` bg-dark-blue absolute top-0 left-0 w-full h-screen transition-transform duration-300 z-40 overflow-hidden ${
+              isNavOpen ? "none translate-y-0" : "block translate-y-full"
+            }`}
+          >
+            <div className="w-full h-full relative">
+              <div className="pt-40 flex flex-col gap-20 items-center">
+                <ul className="text-center flex flex-col gap-3">
+                  {["/", "/works", "/about"].map((href, index) => {
+                    const text =
+                      href === "/" ? "INDEX" : href.slice(1).toUpperCase();
+                    return (
+                      <li key={index}>
+                        <Link
+                          onClick={() => {
+                            setIsNavigate(true);
+                            setStartAnimation(false);
+                            setNavOpen(false);
+                          }}
+                          href={href}
+                          className={`link-text font-righteous text-[10vw] leading-none ${pathname === href ? "active text-orange" : "text-background"}`}
+                        >
+                          {text}
+                        </Link>
+                      </li>
+                    );
+                  })}
+                </ul>
+                <ul className="flex items-center gap-5 text-background">
+                  <li>
+                    <Link
+                      href="https://linkedin.com/in/cahyajuniar"
+                      target="_blank"
+                    >
+                      <FaLinkedin className="text-2xl" />
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="https://github.com/juniarc" target="_blank">
+                      <FaGithub className="text-2xl" />
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+              <div className="absolute bottom-0 left-0 ">
+                <span className="text-background text-center w-full font-righteous text-[27vw] leading-none tracking-tighter">
+                  JUNIAR<span className="text-orange">C</span>
+                </span>
+              </div>
+            </div>
+          </nav>
+        )}
       </div>
     </header>
   );

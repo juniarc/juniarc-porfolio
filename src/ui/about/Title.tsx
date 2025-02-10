@@ -32,10 +32,10 @@ export default function Title() {
         ref={titleRef}
         className="text-[20vw] leading-[15vw] tracking-tighter flex overflow-hidden justify-center uppercase whitespace-pre"
       >
-        {title.split("").map((char, index) => (
+        {title.split("").map((char, index, array) => (
           <span
             key={index}
-            className="inline-block opacity-100 translate-y-full"
+            className={`inline-block opacity-100 translate-y-full ${array.length - 2 <= index && "text-orange"}`}
           >
             {char}
           </span>

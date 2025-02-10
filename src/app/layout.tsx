@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import Header from "@/ui/global/Header";
 import SmoothScrolling from "@/providers/SmoothScrolling";
 import FlickeringGrid from "@/ui/global/FlickeringGrid";
 import { TransitionProvider } from "@/hooks/TransitionContext";
+import { ScreenSizeProvider } from "@/hooks/ScreeSizeContext";
+import { MountProvider } from "@/hooks/MountContex";
+import HeaderWrapper from "@/ui/global/HeaderWrapper";
 
 const righteous = localFont({
   src: "../../public/fonts/Righteous-Regular.ttf",
@@ -29,19 +31,23 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${robotoMono.variable} ${righteous.variable} antialiased max-h-fit overflow-hidden`}
+        className={`${robotoMono.variable} ${righteous.variable} antialiased max-h-fit`}
       >
-        <FlickeringGrid
-          className="z-0 absolute inset-0 size-full opacity-10 pointer-events-none"
-          squareSize={48}
-          gridGap={0}
-          maxOpacity={0.5}
-          flickerChance={0.5}
-        />
-        <TransitionProvider>
-          <Header />
-          <SmoothScrolling>{children}</SmoothScrolling>
-        </TransitionProvider>
+        <MountProvider>
+          <ScreenSizeProvider>
+            <TransitionProvider>
+              <FlickeringGrid
+                className="z-0 absolute inset-0 size-full opacity-10 pointer-events-none"
+                squareSize={48}
+                gridGap={0}
+                maxOpacity={0.5}
+                flickerChance={0.5}
+              />
+              <HeaderWrapper />
+              <SmoothScrolling>{children}</SmoothScrolling>
+            </TransitionProvider>
+          </ScreenSizeProvider>
+        </MountProvider>
       </body>
     </html>
   );

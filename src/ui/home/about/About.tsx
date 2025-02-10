@@ -4,41 +4,47 @@ import { useGSAPContext } from "@/providers/gsapContext";
 import { useRef } from "react";
 import AboutText from "./AboutText";
 import { useTransitionContext } from "@/hooks/TransitionContext";
+import { useMountedContext } from "@/hooks/MountContex";
 
 export default function About() {
-  const { useGSAP, ScrollTrigger, gsap } = useGSAPContext();
+  const { useGSAP, gsap } = useGSAPContext();
+  const { isMounted } = useMountedContext();
   const { startAnimation } = useTransitionContext();
   const containerRef = useRef<HTMLDivElement>(null);
   const aboutRef = useRef<HTMLDivElement>(null);
 
-  useGSAP(() => {
-    gsap.registerPlugin(ScrollTrigger);
+  useGSAP(
+    () => {
+      const delay = 2.5;
 
-    const delay = 2.5;
+      if (isMounted) {
+        if (startAnimation) {
+          gsap.to(aboutRef.current, {
+            translateY: 0,
+            duration: 0.95,
+            delay: delay,
+            ease: "power3.out",
+          });
+        }
 
-    if (startAnimation) {
-      gsap.to(aboutRef.current, {
-        translateY: 0,
-        duration: 0.95,
-        delay: delay,
-        ease: "power3.out",
-      });
-    }
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: document.documentElement,
+            start: 0,
+            endTrigger: containerRef.current,
+            end: "top top",
+            scrub: true,
+          },
+        });
+        tl.to(aboutRef.current, {
+          width: "400vw",
+        });
+      }
+    },
+    { dependencies: [isMounted, startAnimation] }
+  );
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: document.documentElement,
-        start: 0,
-        endTrigger: containerRef.current,
-        end: "top top",
-        scrub: true,
-      },
-    });
-    tl.to(aboutRef.current, {
-      width: "400vw",
-    });
-  }, [startAnimation]);
-
+  if (!isMounted) return;
   return (
     <div
       ref={containerRef}

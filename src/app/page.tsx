@@ -8,12 +8,12 @@ import Works from "@/ui/home/work/Works";
 export default function Home() {
   return (
     <GSAPProvider>
-      <main className="max-w-screen overflow-hidden mb-10">
+      <main className="max-w-screen min-h-screen overflow-hidden mb-10">
         <section className="h-[65vh] flex flex-col justify-end items-center">
           <HeroText />
           <InfiniteText />
         </section>
-        <section>
+        <section className="w-screen">
           <About />
         </section>
         <section className="work-section mt-10 px-10 relative">

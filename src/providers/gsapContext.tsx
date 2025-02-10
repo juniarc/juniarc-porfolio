@@ -4,6 +4,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { createContext, useContext } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useMountedContext } from "@/hooks/MountContex";
 
 gsap.registerPlugin(useGSAP);
 
@@ -15,6 +16,15 @@ interface GSAPContextProps {
 const GSAPContext = createContext<GSAPContextProps | null>(null);
 
 export const GSAPProvider = ({ children }: { children: React.ReactNode }) => {
+  const { isMounted } = useMountedContext();
+  useGSAP(
+    () => {
+      if (isMounted) {
+        gsap.registerPlugin(ScrollTrigger);
+      }
+    },
+    { dependencies: [isMounted] }
+  );
   return (
     <GSAPContext.Provider value={{ gsap, ScrollTrigger, useGSAP }}>
       {children}

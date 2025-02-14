@@ -20,34 +20,37 @@ export default function FirstImage({
 
   const delay = 2.5;
 
-  useGSAP(() => {
-    gsap.registerPlugin(ScrollTrigger);
+  useGSAP(
+    () => {
+      gsap.registerPlugin(ScrollTrigger);
 
-    if (startAnimation) {
-      gsap.fromTo(
-        imageRef.current,
-        {
-          yPercent: 100,
-        },
-        {
-          yPercent: 0,
-          duration: 1.5,
-          ease: "power3.out",
-          delay: delay,
-        }
-      );
+      if (startAnimation) {
+        gsap.fromTo(
+          imageRef.current,
+          {
+            yPercent: 100,
+          },
+          {
+            yPercent: 0,
+            duration: 1.5,
+            ease: "power3.out",
+            delay: delay,
+          }
+        );
 
-      gsap.to(imageRef.current, {
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top top",
-          end: "bottom top",
-          scrub: true,
-        },
-        translateY: 100,
-      });
-    }
-  }, [startAnimation]);
+        gsap.to(imageRef.current, {
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+          },
+          translateY: 50,
+        });
+      }
+    },
+    { dependencies: [startAnimation], revertOnUpdate: true }
+  );
 
   return (
     <div
@@ -60,6 +63,7 @@ export default function FirstImage({
           quality={100}
           width={1920}
           height={1080}
+          priority
           className="w-full h-full object-cover object-center"
           alt={`${title} Image`}
         />

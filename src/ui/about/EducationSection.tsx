@@ -21,44 +21,46 @@ const data = [
 
 export default function EducationSection() {
   return (
-    <div className="w-screen px-10 mt-10">
+    <div className="w-screen mt-10 px-3 md:px-10 lg:mt-10">
       <div className="w-full relative">
         <h2 className="uppercase text-[9vw] tracking-tighter leading-none w-full">
           <span className="outline-text text-dark-blue">My</span>{" "}
           <span className="text-orange outline-text">Education</span>
         </h2>
-        <div className="absolute top-0 right-0 aspect-square w-10 ">
+        <div className="absolute top-0 right-0 aspect-square w-5 lg:w-10 ">
           <AnimatedSquares />
         </div>
       </div>
-      <div className="mt-10">
+      <div className="mt-3 lg:mt-10">
         {data.map((item) => (
           <div key={item.id} className="w-full mb-5">
-            <div className="w-full flex gap-5">
-              <div className="w-3/5 flex gap-5">
-                <span className="font-righteous text-xl text-dark-blue tracking-tighter uppercase">
+            <div className="w-full flex flex-col lg:flex-row gap-5">
+              <div className="w-full lg:w-3/5 flex gap-2 lg:gap-5">
+                <span className="font-righteous text-[3vw] lg:text-[1.5vw] text-dark-blue tracking-tighter uppercase">
                   0{item.id}.
                 </span>
-                <div>
-                  <p className="text-[2.5rem] font-righteous leading-none outline-text text-orange tracking-tighter uppercase">
+                <div className="flex flex-col justify-start">
+                  <p className="text-[5vw] lg:text-[3vw] font-righteous leading-none outline-text text-orange tracking-tighter uppercase">
                     {item.title}
                   </p>
-                  <div className="w-full flex items-start gap-5 mt-3">
-                    <span className="font-righteous text-xl text-dark-blue tracking-tighter">
+                  <div className="w-full flex items-start gap-2 lg:gap-5 mt-1 lg:mt-3">
+                    <span className="font-righteous text-[3vw] lg:text-[1.5vw] text-dark-blue tracking-tighter">
                       at
                     </span>
-                    <p className="text-[2.5rem] font-righteous outline-text text-dark-blue leading-none tracking-tighter uppercase">
+                    <p className="text-[5vw] lg:text-[3vw] font-righteous outline-text text-dark-blue leading-none tracking-tighter uppercase">
                       {item.subtitle}
                     </p>
                   </div>
-                  <p className="text-lg italic mt-3 leading-none">
+                  <p className="text-[3.75vw] lg:text-[1.5vw] italic mt-2 lg:mt-3 leading-none">
                     {item.year}
                   </p>
                 </div>
               </div>
-              <div className="w-2/5 text-justify">{parse(item.desc ?? "")}</div>
+              <div className="lg:w-2/5 text-[3.75vw] lg:text-[1.25vw] text-justify ml-[3vw] pl-2">
+                {parse(item.desc ?? "")}
+              </div>
             </div>
-            <div className="w-full h-[1px] bg-dark-blue mt-5"></div>
+            <div className="w-full h-[1px] bg-dark-blue mt-3 lg:mt-5"></div>
           </div>
         ))}
       </div>

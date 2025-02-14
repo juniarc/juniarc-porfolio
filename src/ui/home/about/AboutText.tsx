@@ -17,104 +17,119 @@ export default function AboutText({
   const squareRef = useRef<HTMLDivElement>(null);
 
   const [textIndent, setTextIndent] = useState(0);
-  const [textTopPadding, setTextTopPadding] = useState(0);
 
   useEffect(() => {
-    const titleWidth = titleContainerRef.current?.clientWidth ?? 0;
-    setTextIndent(titleWidth);
+    const updateTextIndent = () => {
+      if (!titleContainerRef.current) return;
 
-    const textHeight = 60 + 5; // for 2.5rem text
-    const titleHeight = titleContainerRef.current?.clientHeight ?? 0;
-    setTextTopPadding(titleHeight - textHeight);
+      const titleWidth = titleContainerRef.current.clientWidth;
+      setTextIndent(titleWidth);
+    };
 
+    updateTextIndent();
+    window.addEventListener("resize", updateTextIndent);
+
+    return () => {
+      window.removeEventListener("resize", updateTextIndent);
+    };
+  }, [sectionRef.current?.clientHeight, sectionRef.current?.clientWidth]);
+
+  useEffect(() => {
     const firstWord = document.querySelector(".word") as HTMLDivElement;
     if (firstWord) {
       firstWord.style.paddingLeft = `${textIndent}px`;
     }
-  }, [titleContainerRef, textRef, textIndent]);
+  }, [textIndent]);
 
-  useGSAP(() => {
-    const sectionHeight = sectionRef.current?.clientHeight ?? 0;
-    const scrollDuration = sectionHeight / 1.35;
+  useGSAP(
+    () => {
+      const sectionHeight = sectionRef.current?.clientHeight ?? 0;
+      const scrollDuration = sectionHeight / 1.35;
 
-    gsap.registerPlugin(ScrollTrigger);
+      gsap.registerPlugin(ScrollTrigger);
 
-    if (sectionHeight !== 0) {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top top",
-          end: `+=${scrollDuration}px`,
-          scrub: true,
-          pin: true,
-        },
-      });
-
-      if (textRef.current) {
-        const splitedText = new SplitType(textRef.current, {
-          types: "words,chars",
+      if (sectionHeight !== 0) {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top top",
+            end: `+=${scrollDuration}px`,
+            scrub: true,
+            pin: true,
+            pinSpacing: false,
+          },
         });
 
-        tl.fromTo(
-          titleRef.current,
-          {
-            yPercent: 100,
-          },
-          {
-            yPercent: 0,
-            ease: "power4.out",
-            duration: 3,
-            delay: 1.5,
-          }
-        )
-          .from(textRef.current, {
-            opacity: 0,
-            ease: "power4.out",
-            duration: 3,
-          })
-          .fromTo(
-            splitedText.chars,
-            {
-              filter: "blur(4px)",
-            },
-            {
-              filter: "blur(0px)",
-              stagger: 0.1,
-              duration: 1,
-            },
-            6
-          );
-      }
+        if (textRef.current) {
+          const splitedText = new SplitType(textRef.current, {
+            types: "words,chars",
+          });
 
-      tl.from(
-        squareRef.current,
-        {
-          opacity: 0,
-          duration: 3,
-          ease: "power4.out",
-        },
-        1.5
-      );
-    }
-  }, [sectionRef.current?.clientHeight]);
+          tl.fromTo(
+            titleRef.current,
+            {
+              yPercent: 100,
+            },
+            {
+              yPercent: 0,
+              ease: "power4.out",
+              duration: 3,
+              delay: 1.5,
+            }
+          )
+            .from(textRef.current, {
+              opacity: 0,
+              ease: "power4.out",
+              duration: 3,
+            })
+            .fromTo(
+              splitedText.chars,
+              {
+                filter: "blur(4px)",
+              },
+              {
+                filter: "blur(0px)",
+                stagger: 0.1,
+                duration: 1,
+              },
+              6
+            );
+        }
+
+        tl.from(
+          squareRef.current,
+          {
+            opacity: 0,
+            duration: 3,
+            ease: "power4.out",
+          },
+          1.5
+        );
+      }
+    },
+    { dependencies: [sectionRef.current?.clientHeight], revertOnUpdate: true }
+  );
   return (
     <div
       ref={containerRef}
       className="w-full h-screen relative overflow-hidden"
     >
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-        <div className="relative w-[80vw] h-[60vh]">
-          <div ref={titleContainerRef} className="overflow-hidden w-fit pr-8">
-            <h2 ref={titleRef} className="text-9xl tracking-tighter relative">
+      <div className="flex items-center justify-center h-full">
+        <div className="relative w-full px-10 lg:px-0 lg:w-[80vw]">
+          <div
+            ref={titleContainerRef}
+            className="overflow-hidden absolute w-fit pr-3 md:pr-8"
+          >
+            <h2
+              ref={titleRef}
+              className="text-[10vw] leading-none lg:text-[7vw] tracking-tighter relative"
+            >
               about me
             </h2>
           </div>
           <p
             ref={textRef}
-            style={{
-              paddingTop: `${textTopPadding}px`,
-            }}
-            className="absolute top-0 left-0 text-white text-[2.5rem] opacity-100"
+            className="h-full text-white text-[5vw] pt-[2.5vw] lg:text-[2.5vw] lg:pt-[2.5vw] opacity-100"
           >
             Hi, I’m Cahya Juniar Syam, a passionate and self-motivated Front-End
             Web Developer. I specialize in crafting responsive and visually

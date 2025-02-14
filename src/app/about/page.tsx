@@ -2,7 +2,7 @@
 
 import { GSAPProvider } from "@/providers/gsapContext";
 import Title from "@/ui/about/Title";
-import InfiniteText from "@/ui/about/InfiniteText";
+import InfiniteText from "@/ui/home/hero/InfiniteText";
 import AboutSection from "@/ui/about/AboutSection";
 import Footer from "@/ui/global/Footer";
 import EducationSection from "@/ui/about/EducationSection";
@@ -15,11 +15,11 @@ export default function About() {
   return (
     <GSAPProvider>
       <main className="max-w-screen overflow-hidden relative mb-10">
-        <section className=" flex flex-col justify-end items-center">
+        <section className="flex flex-col justify-end items-center px-3 lg:px-10 pt-10">
           <Title />
           <InfiniteText />
         </section>
-        <section className="px-10">
+        <section className="px-3 md:px-10">
           <AboutSection />
         </section>
         <section>

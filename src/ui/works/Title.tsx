@@ -10,25 +10,28 @@ export default function Title() {
   const title = "WORK";
   const titleRef = useRef<HTMLHeadingElement>(null);
 
-  useGSAP(() => {
-    const chars = titleRef.current?.querySelectorAll("span");
+  useGSAP(
+    () => {
+      const chars = titleRef.current?.querySelectorAll("span");
 
-    if (chars && startAnimation) {
-      gsap.to(chars, {
-        translateY: 0,
-        duration: 1,
-        ease: "power4.out",
-        stagger: 0.05,
-        delay: 1,
-      });
-    }
-  }, [startAnimation]);
+      if (chars && startAnimation) {
+        gsap.to(chars, {
+          translateY: 0,
+          duration: 1,
+          ease: "power4.out",
+          stagger: 0.05,
+          delay: 1,
+        });
+      }
+    },
+    { dependencies: [startAnimation], revertOnUpdate: true }
+  );
 
   return (
     <div className="w-full">
       <h1
         ref={titleRef}
-        className="text-[15vw] leading-[13vw] tracking-tighter flex flex-wrap overflow-hidden justify-center"
+        className="text-[25vw] leading-none lg:text-[15vw] lg:leading-[13vw] mt-10 lg:mt-0 tracking-tighter flex flex-wrap overflow-hidden justify-center"
       >
         {title.split("").map((char, index) => (
           <span

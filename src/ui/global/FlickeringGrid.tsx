@@ -9,11 +9,11 @@ import React, {
 } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
+import { useScreenSizeContext } from "@/hooks/ScreeSizeContext";
 
 gsap.registerPlugin(useGSAP);
 
 interface FlickeringGridProps {
-  squareSize?: number;
   gridGap?: number;
   flickerChance?: number;
   color?: string;
@@ -23,9 +23,7 @@ interface FlickeringGridProps {
 
   maxOpacity?: number;
 }
-
 const FlickeringGrid: React.FC<FlickeringGridProps> = ({
-  squareSize = 4,
   gridGap = 6,
   flickerChance = 0.3,
   color = "rgb(0, 0, 0)",
@@ -34,11 +32,14 @@ const FlickeringGrid: React.FC<FlickeringGridProps> = ({
   className,
   maxOpacity = 0.3,
 }) => {
+  const { deviceType } = useScreenSizeContext();
+
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [isInView, setIsInView] = useState(false);
   const [canvasSize, setCanvasSize] = useState({ width: 0, height: 0 });
 
+  const squareSize = deviceType === "desktop" ? 48 : 24;
   const memoizedColor = useMemo(() => {
     const toRGBA = (color: string) => {
       if (typeof window === "undefined") {
@@ -130,8 +131,10 @@ const FlickeringGrid: React.FC<FlickeringGridProps> = ({
     let gridParams: ReturnType<typeof setupCanvas>;
 
     const updateCanvasSize = () => {
-      const newWidth = width || container.clientWidth;
-      const newHeight = height || container.clientHeight;
+      const newWidth =
+        width || container.clientWidth + container.clientWidth * 0.1;
+      const newHeight =
+        height || container.clientHeight + container.clientHeight * 0.1;
       setCanvasSize({ width: newWidth, height: newHeight });
       gridParams = setupCanvas(canvas, newWidth, newHeight);
     };
@@ -251,7 +254,7 @@ const FlickeringGrid: React.FC<FlickeringGridProps> = ({
   );
 
   return (
-    <div ref={containerRef} className={`w-full h-full ${className}`}>
+    <div ref={containerRef} className={`${className}`}>
       <canvas
         ref={canvasRef}
         className="pointer-events-none opacity-100"

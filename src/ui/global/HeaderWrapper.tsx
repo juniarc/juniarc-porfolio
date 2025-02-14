@@ -9,6 +9,6 @@ export default function HeaderWrapper() {
   const { isMounted } = useMountedContext();
 
   if (!isMounted) return;
-  if (deviceType === "desktop") return <HeaderDesktop />;
-  return <Header />;
+  if (deviceType !== "desktop") return <Header />;
+  return <HeaderDesktop />;
 }

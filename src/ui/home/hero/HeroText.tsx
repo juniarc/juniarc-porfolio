@@ -26,10 +26,10 @@ export default function HeroText() {
   }, [startAnimation]);
 
   return (
-    <div className="w-full px-10">
+    <div className="w-full lg:px-10 px-3">
       <h1
         ref={textRef}
-        className="text-[25.4vw] leading-[20vw] tracking-tighter flex overflow-hidden"
+        className="text-[24vw] leading-[18vw] lg:text-[25.4vw] lg:leading-[20vw] flex flex-nowrap justify-center tracking-tighter overflow-hidden"
       >
         {text.split("").map((char, index) => (
           <span

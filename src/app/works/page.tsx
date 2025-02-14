@@ -11,28 +11,10 @@ export default function Works() {
         <section className="px-10 pt-10">
           <Title />
         </section>
-        <section className="grid grid-cols-2 gap-x-10 gap-y-20 px-10 mt-10">
+        <section className="grid lg:grid-cols-2 lg:gap-x-10 gap-y-10 lg:gap-y-20 px-3 lg:px-10 mt-10">
           {workItemData.map((item, index) => (
             <WorkItem key={index} {...item} number={`${item.id}`} />
           ))}
-          {/* <WorkItem
-            year="2024"
-            role="Full - stack developer"
-            number="01."
-            title="Arva"
-          />
-          <WorkItem
-            year="2024"
-            role="FRONT - END DEVELOPER"
-            number="02."
-            title="Disscusify"
-          />
-          <WorkItem
-            year="2024"
-            role="FRONT - END DEVELOPER"
-            number="03."
-            title="Restofinder"
-          /> */}
         </section>
       </main>
       <Footer />

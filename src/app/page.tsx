@@ -9,14 +9,14 @@ export default function Home() {
   return (
     <GSAPProvider>
       <main className="max-w-screen min-h-screen overflow-hidden mb-10">
-        <section className="h-[65vh] flex flex-col justify-end items-center">
+        <section className="h-[65vh] flex flex-col justify-end items-center max-w-[100vw] overflow-x-hidden">
           <HeroText />
-          <InfiniteText />
+          <InfiniteText border="border-y border-dark-blue" />
         </section>
         <section className="w-screen">
           <About />
         </section>
-        <section className="work-section mt-10 px-10 relative">
+        <section className="work-section lg:mt-10 p-3 lg:p-10 relative">
           <Works />
         </section>
       </main>

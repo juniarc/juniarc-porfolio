@@ -22,7 +22,7 @@ export default function Works() {
   return (
     <div>
       <Title />
-      <div className="mt-10">
+      <div className="mt-5 lg:mt-10">
         <Arva
           id={workItemData[0].id}
           year={workItemData[0].year}
@@ -43,8 +43,8 @@ export default function Works() {
             </>
           }
         />
-        <div className="relative mt-28 flex justify-between gap-10">
-          <div className="w-1/2">
+        <div className="relative mt-5 lg:mt-28 lg:flex lg:justify-between lg:gap-10">
+          <div className="lg:w-1/2">
             <WorkItem
               id={workItemData[1].id}
               year={workItemData[1].year}
@@ -59,7 +59,7 @@ export default function Works() {
               position={workItemData[1].position}
             />
           </div>
-          <div className="w-1/2">
+          <div className="lg:w-1/2">
             <WorkItem
               id={workItemData[2].id}
               year={workItemData[2].year}

@@ -31,14 +31,13 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${robotoMono.variable} ${righteous.variable} antialiased max-h-fit`}
+        className={`${robotoMono.variable} ${righteous.variable} antialiased w-screen overflow-x-hidden`}
       >
         <MountProvider>
           <ScreenSizeProvider>
             <TransitionProvider>
               <FlickeringGrid
-                className="z-0 absolute inset-0 size-full opacity-10 pointer-events-none"
-                squareSize={48}
+                className="z-0 absolute inset-0 max-w-[100vw] overflow-hidden size-full opacity-10 pointer-events-none"
                 gridGap={0}
                 maxOpacity={0.5}
                 flickerChance={0.5}

@@ -23,15 +23,15 @@ const data = [
   },
   {
     id: 2,
-    title: "Epsilon 2021",
-    subtitle: "Graphic Designer",
+    title: "Graphic Designer",
+    subtitle: "Epsilon 2021",
     year: "June - August 2021",
     desc: `<li>Created Instagram posts, themes, and assets, receiving positive feedback from clients and users. Developed a cohesive design theme for consistent branding in every post and designed reusable assets for team members, ensuring all posts were completed on schedule.</li>`,
   },
   {
     id: 3,
-    title: "Dinamika 2020",
-    subtitle: "Graphic Designer",
+    title: "Graphic Designer",
+    subtitle: "Dinamika 2020",
     year: "September 2020 - June 2021",
     desc: `<li>Developed a new logo based on event values, contributing five proposals with the selected logo still in use since 2020.</li>
 <li >Designed engaging Instagram posts for event recaps and announcements, enhancing audience awareness of updates.</li>`,
@@ -40,40 +40,42 @@ const data = [
 
 export default function OtherSection() {
   return (
-    <div className="w-screen mt-10 px-10">
+    <div className="w-screen px-3 md:px-10 lg:mt-10">
       <div className="w-full relative">
         <h2 className="uppercase text-[9vw] tracking-tighter leading-none w-full ">
           <span className="text-dark-blue outline-text">Other</span>{" "}
           <span className="text-orange outline-text">Experience</span>
         </h2>
-        <div className="absolute top-0 right-0 aspect-square w-10 rotate-90">
+        <div className="absolute top-0 right-0 aspect-square rotate-90 w-5 lg:w-10">
           <AnimatedSquares />
         </div>
       </div>
-      <div className="mt-10">
+      <div className="mt-3 lg:mt-10">
         {data.map((item) => (
           <div key={item.id} className="w-full mb-5">
-            <div className="flex items-start gap-5">
-              <span className="font-righteous text-xl text-dark-blue tracking-tighter uppercase">
+            <div className="flex items-start gap-2 lg:gap-5">
+              <span className="font-righteous text-[3vw] lg:text-[1.5vw] text-dark-blue tracking-tighter uppercase">
                 0{item.id}.
               </span>
               <div>
-                <div className="w-full flex items-start gap-5">
-                  <p className="text-[2.5rem] text-nowrap font-righteous leading-none text-orange tracking-tighter uppercase outline-text">
+                <div className="w-full flex flex-col lg:flex-row items-start gap-2 lg:gap-5">
+                  <p className="text-[5vw] lg:text-[3vw] text-nowrap font-righteous leading-none text-orange tracking-tighter uppercase outline-text">
                     {item.title}
                   </p>
-                  <span className="font-righteous text-xl text-dark-blue tracking-tighter">
-                    at
-                  </span>
-                  <p className="text-[2.5rem] font-righteous outline-text text-dark-blue leading-none tracking-tighter uppercase">
-                    {item.subtitle}
-                  </p>
-                  <p className="text-lg italic text-nowrap leading-none">
+                  <div className="flex items-start gap-2 lg:gap-5">
+                    <span className="font-righteous text-[3vw] lg:text-[1.5vw] text-dark-blue tracking-tighter">
+                      at
+                    </span>
+                    <p className="text-[5vw] lg:text-[3vw] font-righteous outline-text text-dark-blue leading-none tracking-tighter uppercase">
+                      {item.subtitle}
+                    </p>
+                  </div>
+                  <p className="text-[3.75vw] lg:text-[1.5vw] italic text-nowrap leading-none">
                     {item.year}
                   </p>
                 </div>
                 <div className="mt-5">
-                  <ul className="list-disc ml-3 text-justify">
+                  <ul className="list-disc ml-3 text-[3.75vw] lg:text-[1.25vw] text-justify">
                     {parse(item.desc ?? "")}
                   </ul>
                 </div>

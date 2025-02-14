@@ -5,10 +5,12 @@ import { useRef } from "react";
 import AboutText from "./AboutText";
 import { useTransitionContext } from "@/hooks/TransitionContext";
 import { useMountedContext } from "@/hooks/MountContex";
+import { useScreenSizeContext } from "@/hooks/ScreeSizeContext";
 
 export default function About() {
   const { useGSAP, gsap } = useGSAPContext();
   const { isMounted } = useMountedContext();
+  const { deviceType } = useScreenSizeContext();
   const { startAnimation } = useTransitionContext();
   const containerRef = useRef<HTMLDivElement>(null);
   const aboutRef = useRef<HTMLDivElement>(null);
@@ -26,7 +28,14 @@ export default function About() {
             ease: "power3.out",
           });
         }
+      }
+    },
+    { dependencies: [isMounted, startAnimation] }
+  );
 
+  useGSAP(
+    () => {
+      if (isMounted) {
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: document.documentElement,
@@ -41,7 +50,10 @@ export default function About() {
         });
       }
     },
-    { dependencies: [isMounted, startAnimation] }
+    {
+      dependencies: [isMounted, deviceType],
+      revertOnUpdate: true,
+    }
   );
 
   if (!isMounted) return;
@@ -50,10 +62,12 @@ export default function About() {
       ref={containerRef}
       className="w-full h-[401vh] relative mt-10 overflow-hidden"
     >
-      <div
-        ref={aboutRef}
-        className="w-1/2 h-full absolute left-1/2 -translate-x-1/2 rounded-t-full bg-orange inset-0 -z-50 translate-y-1/2"
-      ></div>
+      <div className="absolute inset-0 w-full h-full flex justify-center">
+        <div
+          ref={aboutRef}
+          className="flex-none w-[200vw] lg:w-1/2 h-full relative rounded-t-full bg-orange inset-0 -z-50 translate-y-1/2"
+        ></div>
+      </div>
       <AboutText sectionRef={containerRef} />
     </div>
   );

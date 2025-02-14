@@ -51,16 +51,22 @@ export const detailWorkData = [
     image1: "/images/arva-mockup.jpg",
     image2: "/images/arva-landingpage.jpg",
     image3: "/images/arva-figma.jpg",
-    image4: "/images/arva-miro.webp",
     heading1: "Building Arva: A Sustainable Agriculture Marketplace",
-    heading2: "Background and Objective",
-    heading3: "My Approach to Solve the Problems",
-    heading4: "Wrapping Up",
+    heading2: "Key Features :",
+    heading3: "Scope of Work",
+    heading4: "Background & Objective",
+    heading5: "My Approach to Solve the Problems",
+    heading6: "Wrapping Up",
     desc1: `<p>Arva is an agriculture-focused e-commerce platform designed to connect local markets with buyers. The platform facilitates the buying and selling of agricultural products such as vegetables, fruits, seeds, equipment, and fertilizers. By bridging the gap between local producers and consumers, Arva promotes sustainable consumption, supports local economies, and reduces the environmental impact of long-distance shipping.</p>
-<p>The platform offers a range of key features to enhance usability. Users can securely log in, create accounts, and discover local markets and detailed product information. Additional functionality includes market creation and the ability to add products, manage carts, and use advanced filtering and sorting options to find specific agricultural items. A wishlist feature also allows users to save favorite products for future purchases.</p>
-<p>This project was developed as the final group assignment for the RevoU Fullstack Developer Bootcamp. Our team consisted of three members, and I served as both the team leader and frontend developer. I led task coordination, ensured timely progress, and managed collaboration among the team. On the technical side, I was responsible for building the frontend architecture, working on web design for mobile, tablet and desktop and connecting between server and frontend for data transactions.</p>
-<p>Arva was built using Next.js for the frontend, styled with Tailwind CSS and Material-Tailwind, and collaboratively designed in Figma. Successfully launched as a fully functional platform.</p>`,
-    desc2: `<p>This project was undertaken as part of the RevoU Fullstack Developer Bootcamp, where students were grouped into teams of 4&ndash;5 members to complete a capstone assignment. The primary goal of this project was to apply the lessons learned throughout the bootcamp and develop an industry-standard website. It served as both a technical challenge and a practical demonstration of the team&rsquo;s ability to deliver a fully functional, real-world application.</p>
+<p>Arva was built using Next.js for the frontend, styled with Tailwind CSS and Material-Tailwind, and collaboratively designed in Figma. For backend, it was built by PostgreSQL and Flask. Successfully launched as a fully functional platform.</p>`,
+    desc2: `<ul>
+<li><strong>Online Store - </strong>Local producers can create their own stores and manage products.</li>
+<li><strong>Payment Gateway - </strong>Simple payment gateway with vouchers and shipping fee based on distance.</li>
+<li><strong>Shopping Cart</strong><strong>-</strong> Consumers can add products to their cart</li>
+<li><strong>Nearby Product Search</strong><strong>-</strong> Consumers can discover products available in their area.</li>
+</ul>`,
+    desc3: `<p>This project was developed as the final group assignment for the RevoU Fullstack Developer Bootcamp. Our team consisted of three members, and I served as both the team leader and frontend developer. I led task coordination, ensured timely progress, and managed collaboration among the team. On the technical side, I was responsible for building the frontend architecture, working on web design for mobile, tablet and desktop and connecting between server and frontend for data transactions.</p>`,
+    desc4: `<p>This project was undertaken as part of the RevoU Fullstack Developer Bootcamp, where students were grouped into teams of 4&ndash;5 members to complete a capstone assignment. The primary goal of this project was to apply the lessons learned throughout the bootcamp and develop an industry-standard website. It served as both a technical challenge and a practical demonstration of the team&rsquo;s ability to deliver a fully functional, real-world application.</p>
 <p>The problem statement driving the project was rooted in the challenges faced by local producers and artisans in connecting with nearby consumers. Many communities struggle to sustain their local economies due to a lack of efficient marketplaces, which often leads to increased reliance on long-distance shipping. This reliance not only harms local businesses but also contributes to higher carbon emissions and unsustainable consumption patterns. To address this, the team aimed to develop a solution that bridges the gap between local producers and consumers, fostering local trade while promoting sustainable practices.</p>
 <p>The project goals were defined by a comprehensive feature set, designed to tackle the problem holistically:</p>
 <ol>
@@ -69,14 +75,13 @@ export const detailWorkData = [
 <li><strong>Market Transactions and Promotions</strong>: Sellers needed the ability to list products, define promotions, and offer discounts through vouchers. For consumers, the platform had to provide a seamless transaction flow, including cart management, a checkout page, a simulated or integrated payment process, and a review system to enhance product feedback.</li>
 <li><strong>Optional Features</strong>: Additional functionality, such as a referral system and wishlist feature, was included to enrich the user experience.</li>
 </ol>`,
-    desc3: `<p>To address the challenges outlined in the project, our team began by conducting thorough research and discovery. As the team leader, I guided the first phase of research, where each team member was tasked with analyzing at least one relevant agriculture e-commerce website. We used Miro as our platform for collaboration, and during our analysis, we evaluated various aspects such as design, product offerings, features, and the pros and cons of each site. This helped us identify strengths and weaknesses in existing solutions, and as a team, we discussed how to incorporate the best features into our platform while adding unique elements that would set Arva apart.</p>
+    desc5: `<p>To address the challenges outlined in the project, our team began by conducting thorough research and discovery. As the team leader, I guided the first phase of research, where each team member was tasked with analyzing at least one relevant agriculture e-commerce website. We used Miro as our platform for collaboration, and during our analysis, we evaluated various aspects such as design, product offerings, features, and the pros and cons of each site. This helped us identify strengths and weaknesses in existing solutions, and as a team, we discussed how to incorporate the best features into our platform while adding unique elements that would set Arva apart.</p>
 <p>In my role as the frontend developer, I expanded the research by examining popular e-commerce platforms like Tokopedia, Amazon, and Shopee. I focused on their designs, features, and user interactions, which provided valuable insights that I translated into the design for Arva. By understanding successful design patterns in well-established e-commerce platforms, I could adapt these ideas to suit our agricultural market, ensuring that users would have an intuitive and efficient experience.</p>
 <p>The next step was to plan and organize the development process. We prioritized core features that aligned with the project's objectives, such as user authentication, market discovery, and product transactions. We also incorporated additional features, like a wishlist system and promotions, to make the platform more engaging for users. I decided to break the development into manageable pages, focusing on one page at a time to ensure steady progress. I chose to use <strong>Next.js</strong> for the frontend, primarily because it offers powerful features like server-side rendering, static site generation, and great SEO benefits, which are crucial for building a scalable and performant e-commerce site.</p>
-<p>For styling, I leveraged <strong>Material-Tailwind</strong>, a powerful combination of Tailwind CSS and Material Design components. This allowed me to build a beautiful, responsive, and user-friendly UI while maintaining consistency across the platform. The integration of Material-Tailwind helped us achieve a polished and professional design that enhanced the overall user experience.</p>
-<p>Throughout the development process, I used tools like <strong>Miro</strong> for brainstorming and notes, and <strong>Trello</strong> to track progress and manage tasks. To ensure that we stayed on target, I set weekly sprint goals and checked in with the team regularly to review progress. This structure allowed us to stay organized, collaborate effectively, and make sure we were on track to meet deadlines and deliver the features on time.</p>`,
-    desc4: `<p>This project was a great learning experience, enhancing my skills in team collaboration and frontend development. It&rsquo;s rewarding to have created something that can support local communities.</p>
-<p>Explore the website here: <a href="https://www.arva.my.id/">Arva - Agriculture E-commerce</a></p>
-<p>View the GitHub repository here: <a href="https://github.com/juniarc/arva-gfp-frontend">Arva GitHub Repository</a></p>`,
+<p>For styling, I leveraged <strong>Material-Tailwind</strong>, a powerful combination of Tailwind CSS and Material Design components. This allowed me to build a beautiful, responsive, and user-friendly UI while maintaining consistency across the platform. The integration of Material-Tailwind helped us achieve a polished and professional design that enhanced the overall user experience.</p> <p>Throughout the development process, I used tools like <strong>Miro</strong> for brainstorming and notes, and <strong>Trello</strong> to track progress and manage tasks. To ensure that we stayed on target, I set weekly sprint goals and checked in with the team regularly to review progress. This structure allowed us to stay organized, collaborate effectively, and make sure we were on track to meet deadlines and deliver the features on time.</p>`,
+    desc6: `<p>This project was a great learning experience, enhancing my skills in team collaboration and frontend development. It&rsquo;s rewarding to have created something that can support local communities.</p>
+<p>Explore the website here: <a href="https://disscusify.vercel.app/">Disscusify - Discussion Forum App</a></p>
+<p>View the GitHub repository here: <a href="https://github.com/juniarc/Disscusify">Disscusify GitHub Repository</a></p>`,
   },
   {
     id: 2,
@@ -87,20 +92,28 @@ export const detailWorkData = [
     institusion: "react developer expert dicoding",
     link: "https://disscusify.vercel.app/",
     image1: "/images/disscusify-mockup.jpg",
-    image2: "/images/disscusify-landingpage.jpg",
-    image3: "/images/disscusify-figma.png",
-    image4: "/images/disscusify-vscode.png",
+    image2: "/images/disscusify-figma.png",
+    image3: "/images/disscusify-vscode.png",
+    image4: "/images/disscusify-landingpage.jpg",
     heading1: "Disscusify - Discussion Forum App",
-    heading2: "Background and Objective",
-    heading3: "My Approach to Solve the Problems",
-    heading4: "Wrapping Up",
-    desc1: `<p><strong>Disscusify</strong> is a discussion forum app built using React, aimed at providing a platform for users to discuss various topics, share insights, and engage in meaningful conversations. The app supports user authentication, thread creation, comments, likes and dislikes on threads and comments, as well as thread categorization to allow users to filter discussions based on their interests. A leaderboard is also included to recognize top users based on their contributions.</p>
-<p>As a front-end developer, I was responsible for implementing these features and ensuring a seamless user experience. Using Redux for state management allowed us to efficiently handle complex state logic, while ESLint ensured code quality and consistency. Additionally, we incorporated end-to-end testing with Cypress and unit testing with Jest to ensure the app&rsquo;s reliability and smooth functionality.</p>`,
-    desc2: `<p>The <strong>Disscusify</strong> project was developed as part of my submission to complete the <strong>Expert React Developer</strong> course at Dicoding Academy. The goal of the project was to build a fully functional discussion forum application that meets all the mandatory specifications outlined by the instructor. The app needed to include features such as user authentication, thread management, likes and dislikes, comment functionalities, and a category filter, among others, in order to showcase proficiency in React and state management.</p>`,
-    desc3: `<p>To start, I listed all the required features for the <strong>Disscusify</strong> app in my notes and researched design inspiration on Pinterest. I then converted these ideas into a clean, organized design using <strong>Figma</strong>.</p>
+    heading2: "Key Features",
+    heading3: "Scope of Work",
+    heading4: "Background & Objective",
+    heading5: "My Approach to Solve the Problems",
+    heading6: "Wrapping Up",
+    desc1: `<p><strong>Disscusify</strong> is a discussion forum app built using React, aimed at providing a platform for users to discuss various topics, share insights, and engage in meaningful conversations. The app supports user authentication, thread creation, comments, likes and dislikes on threads and comments, as well as thread categorization to allow users to filter discussions based on their interests. A leaderboard is also included to recognize top users based on their contributions.</p>`,
+    desc2: `<ul>
+<li><strong>Create Discussion - </strong>User can create their own discussion.</li>
+<li><strong>Interactive - </strong>User can like, dislike, and comment to a discussion.</li>
+<li><strong>Search &amp; Filter - </strong>User can search and filter by category.</li>
+<li><strong>Authentication - </strong>User can have their account that have username and photo profile</li>
+</ul>`,
+    desc3: `<p>As a front-end developer, I was responsible for implementing these features and ensuring a seamless user experience. Using Redux for state management allowed us to efficiently handle complex state logic, while ESLint ensured code quality and consistency. Additionally, we incorporated end-to-end testing with Cypress and unit testing with Jest to ensure the app&rsquo;s reliability and smooth functionality.</p>`,
+    desc4: `<p>The <strong>Disscusify</strong> project was developed as part of my submission to complete the <strong>Expert React Developer</strong> course at Dicoding Academy. The goal of the project was to build a fully functional discussion forum application that meets all the mandatory specifications outlined by the instructor. The app needed to include features such as user authentication, thread management, likes and dislikes, comment functionalities, and a category filter, among others, in order to showcase proficiency in React and state management.</p>`,
+    desc5: `<p>To start, I listed all the required features for the <strong>Disscusify</strong> app in my notes and researched design inspiration on Pinterest. I then converted these ideas into a clean, organized design using <strong>Figma</strong>.</p>
 <p>For development, I first created wireframes and designed in figma before translating the design into the app using <strong>React JS</strong>. One of the most challenging aspects of the project was managing state with <strong>Redux</strong>. I had to carefully break down the logic for handling data requests from the server and managing UI state across different components.</p>
 <p>To handle the state effectively, I created <strong>thunk functions</strong> to interact with the server, storing the returned data in the app&rsquo;s state via <strong>Redux reducers</strong>. I also organized the app by separating UI components and state management into distinct folders, which helped maintain a clean and scalable codebase.</p>`,
-    desc4: `<p>The project was completed under the supervision of experts. To ensure the app met all the requirements, I focused on making sure that every feature functioned properly and was free of bugs. By thoroughly testing the app, I ensured a smooth user experience and that all functionalities were working as expected.</p>
+    desc6: `<p>The project was completed under the supervision of experts. To ensure the app met all the requirements, I focused on making sure that every feature functioned properly and was free of bugs. By thoroughly testing the app, I ensured a smooth user experience and that all functionalities were working as expected.</p>
 <p>Explore the website here: <a href="https://disscusify.vercel.app/">Disscusify - Discussion Forum App</a></p>
 <p>View the GitHub repository here: <a href="https://github.com/juniarc/Disscusify">Disscusify GitHub Repository</a></p>`,
   },

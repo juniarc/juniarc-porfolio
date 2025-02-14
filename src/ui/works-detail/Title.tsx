@@ -25,7 +25,7 @@ export default function Title({ title }: { title: string | undefined }) {
   }, [startAnimation]);
 
   return (
-    <div className="w-full">
+    <div className="w-full mt-10 lg:mt-0">
       <h1
         ref={titleRef}
         className="text-[15vw] leading-[13vw] tracking-tighter flex flex-wrap overflow-hidden justify-center uppercase"

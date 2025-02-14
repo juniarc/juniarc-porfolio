@@ -6,10 +6,12 @@ import { useGSAPContext } from "@/providers/gsapContext";
 import { useRef } from "react";
 import AnimatedSquares from "../others/AnimatedSquares";
 import { useMountedContext } from "@/hooks/MountContex";
+import { useScreenSizeContext } from "@/hooks/ScreeSizeContext";
 
 export default function AboutSection() {
   const { gsap, useGSAP, ScrollTrigger } = useGSAPContext();
   const { isMounted } = useMountedContext();
+  const { deviceType } = useScreenSizeContext();
 
   const circleRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLHeadingElement>(null);
@@ -17,51 +19,62 @@ export default function AboutSection() {
   const textWrapperRef = useRef<HTMLDivElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const imgContentRef = useRef<HTMLImageElement>(null);
+
+  useGSAP(() => {
+    const delay = 2.5;
+
+    gsap.from(wrapperRef.current, {
+      yPercent: 100,
+      duration: 2,
+      ease: "power4.out",
+      delay: delay,
+      onStart: () => ScrollTrigger.refresh(),
+    });
+  }, []);
 
   useGSAP(
     () => {
       gsap.registerPlugin(ScrollTrigger);
 
-      const circleHeight = textRef.current?.clientHeight ?? 0;
-      const maxWidthCircle = circleHeight * 4;
-
-      const delay = 2.5;
-
-      gsap.fromTo(
-        wrapperRef.current,
-        {
-          yPercent: 100,
-        },
-        {
-          yPercent: 0,
-          duration: 2,
-          ease: "power4.out",
-          delay: delay,
-        }
-      );
-
       gsap.to(circleRef.current, {
         width: "2em",
         ease: "none",
         scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 50%",
-          end: `+=${maxWidthCircle}px`,
+          trigger: circleRef.current,
+          start: "top 90%",
+          end: `bottom top`,
           scrub: true,
         },
       });
 
-      gsap.to(imgRef.current, {
-        yPercent: -20,
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 20%",
-          end: "bottom top",
-          scrub: true,
-        },
-      });
+      if (deviceType !== "desktop") {
+        gsap.to(imgContentRef.current, {
+          yPercent: 20,
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+          },
+        });
+      } else {
+        gsap.to(circleRef.current, {
+          width: "2em",
+          ease: "none",
+          scrollTrigger: {
+            trigger: circleRef.current,
+            start: "top 90%",
+            end: `top top`,
+            scrub: true,
+          },
+        });
+      }
     },
-    { dependencies: [textRef.current?.clientHeight] }
+    {
+      dependencies: [textRef.current?.clientHeight, deviceType],
+      revertOnUpdate: true,
+    }
   );
 
   if (!isMounted) return;
@@ -69,22 +82,23 @@ export default function AboutSection() {
     <div ref={containerRef} className="relative">
       <div
         ref={wrapperRef}
-        className="flex items-start justify-between gap-10 mt-10 "
+        className="w-full flex flex-col lg:flex-row items-center lg:items-start justify-between gap-3 lg:gap-10 mt-5 lg:mt-10 "
       >
-        <div ref={imgRef} className="w-[45%] ">
+        <div ref={imgRef} className="w-full lg:w-[45%] overflow-hidden">
           <Image
+            ref={imgContentRef}
             src={MyImage}
             className="w-full h-3/5 object-cover object-bottom"
             alt="About Me Photo"
             priority
           />
-          <div className=" mt-10 w-10 aspect-square rotate-90">
+          <div className="hidden lg:block mt-10 w-10 aspect-square rotate-90">
             <AnimatedSquares />
           </div>
         </div>
-        <div ref={textWrapperRef} className="w-[55%]">
-          <div>
-            <h2 className="uppercase text-[9vw] tracking-tighter leading-none w-full">
+        <div ref={textWrapperRef} className="w-full lg:w-[55%]">
+          <div className="flex flex-col items-center">
+            <h2 className="uppercase text-[9vw] tracking-tighter leading-none w-1/2 lg:w-full">
               <span className="inline-block w-full">A Bit</span>
               <span
                 ref={textRef}
@@ -103,8 +117,8 @@ export default function AboutSection() {
               </span>
             </h2>
           </div>
-          <div className="w-full px-20 mt-10">
-            <p className="text-justify text-lg">
+          <div className="w-full px-10 lg:px-20 mt-3 lg:mt-10">
+            <p className="text-justify text-[3.75vw] lg:text-[1.25vw]">
               I am a engineering physics fresh graduate from Universitas Gadjah
               Mada with certifications in Expert React Development and
               Full-Stack Software Engineering, where I built an e-commerce

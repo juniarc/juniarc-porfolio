@@ -27,10 +27,10 @@ export default function Title() {
   }, [startAnimation]);
 
   return (
-    <div className="w-full px-10">
+    <div className="w-full">
       <h1
         ref={titleRef}
-        className="text-[20vw] leading-[15vw] tracking-tighter flex overflow-hidden justify-center uppercase whitespace-pre"
+        className="text-[20vw] leading-[15vw] tracking-tighter w-full min-w-full flex overflow-hidden justify-center uppercase whitespace-pre mt-10 lg:mt-0"
       >
         {title.split("").map((char, index, array) => (
           <span

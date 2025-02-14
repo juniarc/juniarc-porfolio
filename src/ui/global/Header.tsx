@@ -17,8 +17,7 @@ export default function Header() {
   const lenis = useLenis();
   const pathname = usePathname();
 
-  const { setIsNavigate, startAnimation, setStartAnimation } =
-    useTransitionContext();
+  const { setIsNavigate, setStartAnimation } = useTransitionContext();
   const [isNavOpen, setNavOpen] = useState(false);
 
   const headerRef = useRef<HTMLDivElement>(null);
@@ -56,18 +55,16 @@ export default function Header() {
 
   useGSAP(
     () => {
-      if (startAnimation) {
-        gsap.from(headerRef.current, {
-          yPercent: -100,
-          duration: 1.5,
-          delay: 2.5,
-          pointerEvents: "none",
-          ease: "power4.out",
-          onComplete: () => setComplete(true),
-        });
-      }
+      gsap.from(headerRef.current, {
+        yPercent: -100,
+        duration: 1.5,
+        delay: 2.5,
+        pointerEvents: "none",
+        ease: "power4.out",
+        onComplete: () => setComplete(true),
+      });
     },
-    { dependencies: [startAnimation] }
+    { dependencies: [] }
   );
 
   const handleBurgerBtn = () => {

@@ -19,7 +19,7 @@ export default async function Page({
   return (
     <GSAPProvider>
       <main className="max-w-screen max-h-max overflow-hidden relative">
-        <section className="px-10 pt-10">
+        <section className="px-3 md:px-10 pt-10">
           <Title title={data?.title} />
           <SubTitle
             role={data?.role}
@@ -28,19 +28,17 @@ export default async function Page({
           />
           <VisitBtn link={data?.link} />
         </section>
-        <section className="mt-24">
+        <section className="mt-10 lg:mt-24">
           <FirstImage image={data?.image1} title={data?.title} />
           <TextContent desc={data?.desc1} heading={data?.heading1} />
+          <TextContent desc={data?.desc2} heading={data?.heading2} />
+          <TextContent desc={data?.desc3} heading={data?.heading3} />
           <ImageSection image={data?.image2} title={data?.title} />
-          {data?.desc2 && (
-            <>
-              <TextContent desc={data?.desc2} heading={data?.heading2} />
-              <ImageSection image={data?.image3} title={data?.title} />
-              <TextContent desc={data?.desc3} heading={data?.heading3} />
-              <ImageSection image={data?.image4} title={data?.title} />
-              <TextContent desc={data?.desc4} heading={data?.heading4} />
-            </>
-          )}
+          <TextContent desc={data?.desc4} heading={data?.heading4} />
+          <TextContent desc={data?.desc5} heading={data?.heading5} />
+          <ImageSection image={data?.image3} title={data?.title} />
+          <TextContent desc={data?.desc6} heading={data?.heading6} />
+          <ImageSection image={data?.image4} title={data?.title} />
         </section>
       </main>
       <Footer />

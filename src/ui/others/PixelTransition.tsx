@@ -4,12 +4,14 @@ import { useEffect, useRef } from "react";
 import { useTransitionContext } from "@/hooks/TransitionContext";
 import { useLenis } from "lenis/react";
 import { usePathname } from "next/navigation";
+import { useScreenSizeContext } from "@/hooks/ScreeSizeContext";
 
 export default function PixelTranisiton() {
+  const { deviceType } = useScreenSizeContext();
   const lenis = useLenis();
   const { isNavigate, setIsNavigate, setStartAnimation } =
     useTransitionContext();
-  const squareSize = 48;
+  const squareSize = deviceType === "desktop" ? 48 : 24;
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -122,7 +124,7 @@ export default function PixelTranisiton() {
     >
       <canvas
         ref={canvasRef}
-        style={{ width: "105vw", height: "105vh" }}
+        style={{ width: "110vw", height: "110vh" }}
       ></canvas>
     </div>
   );

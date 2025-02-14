@@ -5,7 +5,7 @@ import SpinningPlus from "@/ui/others/SpinningPlus";
 import { useGSAPContext } from "@/providers/gsapContext";
 import { useTransitionContext } from "@/hooks/TransitionContext";
 
-export default function InfiniteText() {
+export default function InfiniteText({ border }: { border?: string }) {
   const { gsap, useGSAP, ScrollTrigger } = useGSAPContext();
   const { startAnimation } = useTransitionContext();
 
@@ -89,36 +89,36 @@ export default function InfiniteText() {
     <div className="mt-5">
       <div
         ref={wrapper}
-        className="border-y border-dark-blue py-3 translate-y-full opacity-0"
+        className={`py-1 lg:py-3 translate-y-full opacity-0 ${border}`}
       >
         <div ref={slider} className="flex items-center relative">
           <span
             ref={firstGroupRef}
-            className="flex items-center gap-8 flex-nowrap pr-8"
+            className="flex items-center gap-3 lg:gap-8 flex-nowrap pr-3 lg:pr-8"
           >
             {Array(4)
               .fill(text)
               .map((text, index) => (
                 <Fragment key={index}>
-                  <span className="text-lg tracking-widest text-nowrap ">
+                  <span className="text-[2.7vw] lg:text-[.95vw] tracking-widest text-nowrap ">
                     {text}
                   </span>
-                  <SpinningPlus />
+                  <SpinningPlus className="text-lg md:text-2xl lg:text-[2vw]" />
                 </Fragment>
               ))}
           </span>
           <span
             ref={secondGroupRef}
-            className="flex items-center gap-8 flex-nowrap absolute left-full pr-8"
+            className="flex items-center gap-3 lg:gap-8 flex-nowrap absolute left-full pr-3 lg:pr-8"
           >
             {Array(4)
               .fill(text)
               .map((text, index) => (
                 <Fragment key={index}>
-                  <span className="text-lg tracking-widest text-nowrap ">
+                  <span className="text-[2.7vw] lg:text-[.95vw] tracking-widest text-nowrap ">
                     {text}
                   </span>
-                  <SpinningPlus />
+                  <SpinningPlus className="text-lg md:text-2xl lg:text-[2vw]" />
                 </Fragment>
               ))}
           </span>

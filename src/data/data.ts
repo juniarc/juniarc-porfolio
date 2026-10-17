@@ -47,7 +47,7 @@ export const detailWorkData = [
     year: "2024",
     role: "front - end developer",
     institusion: "final project revou",
-    link: "https://www.arva.my.id/",
+    link: "https://arva-frontend.vercel.app/",
     image1: "/images/arva-mockup.jpg",
     image2: "/images/arva-landingpage.jpg",
     image3: "/images/arva-figma.jpg",

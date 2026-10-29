@@ -79,6 +79,24 @@ export default function Works() {
             />
           </div>
         </div>
+        <div className="relative lg:h-[550px] mt-5 lg:mt-28 lg:flex lg:justify-between lg:gap-10">
+          <div className="lg:w-1/2"></div>
+          <div className="lg:w-1/2">
+            <WorkItem
+              id={workItemData[3].id}
+              year={workItemData[3].year}
+              role={workItemData[3].role}
+              title={workItemData[3].title}
+              subtitle={workItemData[3].subtitle}
+              description={workItemData[3].description}
+              tools={<BiLogoReact />}
+              image={workItemData[3].image}
+              yPercent={workItemData[3].yPercent}
+              startTrigger={workItemData[3].startTrigger}
+              position={workItemData[3].position}
+            />
+          </div>
+        </div>
       </div>
     </div>
   );

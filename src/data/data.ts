@@ -37,6 +37,19 @@ export const workItemData: WorkItemType[] = [
     startTrigger: "top 30%",
     position: "ml-auto",
   },
+  {
+    id: 4,
+    title: "ethereal",
+    subtitle: "NFT Landing Page",
+    year: "2024",
+    role: "front - end developer",
+    image: "/images/restofinder-mockup.jpg",
+    description:
+      "Ethereal is an NFT landing page that allows users to connect their crypto wallets, including Rainbow and Coinbase Wallet, for a seamless Web3 experience.",
+    yPercent: "-30",
+    startTrigger: "top 30%",
+    position: "ml-auto",
+  },
 ];
 
 export const detailWorkData = [
@@ -133,5 +146,23 @@ export const detailWorkData = [
 <p>The project was developed using a <strong>webpack</strong> environment with <strong>HTML</strong>, <strong>SCSS</strong>, and <strong>JavaScript</strong>. It is optimized for performance, with <strong>Progressive Web App (PWA)</strong> capabilities enabled by <strong>Workbox</strong> and <strong>REST API</strong> integration for dynamic data fetching. The app also includes <strong>image optimization</strong> using <strong>Imagemin</strong> and <strong>bundle optimization</strong> via <strong>code splitting</strong> to improve load times.</p>
 <p>Explore the website here: <a href="https://restofinderproject.netlify.app/">Restofinder - Restaurant Catalogue</a></p>
 <p>View the GitHub repository here: <a href="https://github.com/juniarc/RestoFinder">Restofinder GitHub Repository</a></p>`,
+  },
+   {
+    id: 4,
+    title: "ethereal",
+    subtitle: "NFT Landing Page",
+    year: "2024",
+    role: "front - end developer",
+    institusion: "Personal Project",
+    link: "https://ethereal-nu.vercel.app/",
+    image1: "/images/restofinder-mockup.jpg",
+    image2: "/images/restofinder-landingpage.jpg",
+    heading1: "Etheral - NFT Landing Page",
+    desc1: `<p><strong>Ethereal</strong> is a landing page for a multi-chain NFT marketplace, designed to feel futuristic and immersive from the first scroll. The project aims to give a Web3 product a strong visual identity while still offering real functionality, allowing visitors to connect their wallet directly from the page instead of interacting with a static mockup.</p>
+<p>The design was created in <strong>Figma</strong>, covering the overall visual direction, layout, and reusable components for both <strong>desktop and mobile</strong>, with animation moments planned early so that motion would feel intentional rather than decorative.</p>
+<p>The page was then built with <strong>React</strong> and styled with <strong>Tailwind CSS</strong>, translating the Figma design 1:1 while keeping spacing, color tokens, and type scale consistent. Key sections include a <strong>hero</strong> with animated wave background and gradient typography, a <strong>feature grid</strong>, a <strong>community section</strong> with social links, and a <strong>call-to-action banner</strong>, all fully responsive with a <strong>dark/light theme toggle</strong>.</p>
+<p>Animations are powered by <strong>GSAP</strong> with <strong>ScrollTrigger</strong>, orchestrating entrance animations, counters, and section reveals so the page reads like a guided story. Wallet connection is handled by <strong>RainbowKit</strong>, letting users connect <strong>MetaMask</strong>, <strong>WalletConnect</strong>, or other wallets and switch between supported <strong>EVM networks</strong> in one click. Heavy visual effects are kept performant by using <strong>transform and opacity-only animations</strong>, and the site is deployed on <strong>Vercel</strong>.</p>
+<p>Explore the website here: <a href="https://ethereal-nu.vercel.app/">Ethereal - NFT Marketplace Landing Page</a></p>
+<p>View the GitHub repository here: <a href="https://github.com/juniarc/ethereal">Ethereal GitHub Repository</a></p>`,
   },
 ];

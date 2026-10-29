@@ -74,7 +74,7 @@ export default function AboutSection() {
     {
       dependencies: [textRef.current?.clientHeight, deviceType],
       revertOnUpdate: true,
-    }
+    },
   );
 
   if (!isMounted) return;
@@ -119,16 +119,18 @@ export default function AboutSection() {
           </div>
           <div className="w-full px-10 lg:px-20 mt-3 lg:mt-10">
             <p className="text-justify text-[3.75vw] lg:text-[1.25vw]">
-              I am a engineering physics fresh graduate from Universitas Gadjah
-              Mada with certifications in Expert React Development and
-              Full-Stack Software Engineering, where I built an e-commerce
-              platform as a capstone project. Starting my programming journey in
-              2023 through Bangkit Academy, I now focus on front-end development
-              with expertise in Next.js, React.js, TypeScript, GSAP, and tools
-              like Figma, Flask, and MySQL. My projects include Arva
+              I’m a software engineer with an Engineering Physics degree from
+              Universitas Gadjah Mada and certifications in Expert React
+              Development and Full-Stack Software Engineering. I started
+              programming in 2023 through Bangkit Academy, built an agriculture
+              e-commerce platform as my bootcamp capstone, and now work as a
+              Junior IT Technical Consultant, debugging production systems in
+              Java and SQL for a banking client. I work across the stack, with
+              React, Next.js and TypeScript on the front end and Node.js, Python
+              and PostgreSQL on the back end. My projects include Arva
               (agriculture e-commerce), Restofinder, Disscusify (forum website),
-              and a personal portfolio. I am passionate about building
-              high-performance websites with excellent user interfaces.
+              and this portfolio. I care about building web applications that
+              are fast, well-tested, and good to use.
             </p>
           </div>
         </div>

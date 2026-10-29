@@ -6,7 +6,7 @@ export const workItemData: WorkItemType[] = [
     title: "arva",
     subtitle: "agriculture e-commerce",
     year: "2024",
-    role: "front - end developer",
+    role: "full - stack developer",
     image: "/images/arva-mockup.jpg",
     description:
       "A platform that connects local producers and artisans with consumers in their community, promoting sustainable consumption, supporting local economies, and reducing carbon footprints associated with long-distance shipping.",
@@ -58,7 +58,7 @@ export const detailWorkData = [
     title: "arva",
     subtitle: "agriculture e-commerce",
     year: "2024",
-    role: "front - end developer",
+    role: "full - stack developer",
     institusion: "final project revou",
     link: "https://arva-frontend.vercel.app/",
     image1: "/images/arva-mockup.jpg",

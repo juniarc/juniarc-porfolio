@@ -131,9 +131,10 @@ export default function AboutText({
             ref={textRef}
             className="h-full text-white text-[5vw] pt-[2.5vw] lg:text-[2.5vw] lg:pt-[2.5vw] opacity-100"
           >
-            Hi, I’m Cahya Juniar Syam, a passionate and self-motivated Front-End
-            Web Developer. I specialize in crafting responsive and visually
-            appealing web applications, blending creativity with functionality.
+            Hi, I’m Cahya Juniar Syam, a software engineer who works across the
+            whole stack. I like building web applications that are fast,
+            responsive and well-tested, and taking them from Figma design all
+            the way to production.
           </p>
         </div>
       </div>

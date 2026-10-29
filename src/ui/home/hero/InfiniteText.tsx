@@ -9,7 +9,9 @@ export default function InfiniteText({ border }: { border?: string }) {
   const { gsap, useGSAP, ScrollTrigger } = useGSAPContext();
   const { startAnimation } = useTransitionContext();
 
-  const text = "FRONT-END WEB DEVELOPER";
+  const text = "SOFTWARE ENGINEER";
+  // Each group must be wider than the viewport or the loop shows a gap.
+  const repeat = 8;
   const firstGroupRef = useRef<HTMLSpanElement>(null);
   const secondGroupRef = useRef<HTMLSpanElement>(null);
   const slider = useRef<HTMLDivElement>(null);
@@ -56,7 +58,7 @@ export default function InfiniteText({ border }: { border?: string }) {
           duration: 0.5,
           ease: "power4.out",
           delay: delay,
-        }
+        },
       ).to(
         wrapper.current,
         {
@@ -64,7 +66,7 @@ export default function InfiniteText({ border }: { border?: string }) {
           duration: 1,
           ease: "sine.inOut",
         },
-        0.3 + delay
+        0.3 + delay,
       );
 
       gsap.to(slider.current, {
@@ -86,17 +88,17 @@ export default function InfiniteText({ border }: { border?: string }) {
   }, [startAnimation]);
 
   return (
-    <div className="mt-5">
+    <div className="mt-5 w-full overflow-hidden">
       <div
         ref={wrapper}
         className={`py-1 lg:py-3 translate-y-full opacity-0 ${border}`}
       >
-        <div ref={slider} className="flex items-center relative">
+        <div ref={slider} className="flex items-center relative w-max">
           <span
             ref={firstGroupRef}
             className="flex items-center gap-3 lg:gap-8 flex-nowrap pr-3 lg:pr-8"
           >
-            {Array(4)
+            {Array(repeat)
               .fill(text)
               .map((text, index) => (
                 <Fragment key={index}>
@@ -111,7 +113,7 @@ export default function InfiniteText({ border }: { border?: string }) {
             ref={secondGroupRef}
             className="flex items-center gap-3 lg:gap-8 flex-nowrap absolute left-full pr-3 lg:pr-8"
           >
-            {Array(4)
+            {Array(repeat)
               .fill(text)
               .map((text, index) => (
                 <Fragment key={index}>

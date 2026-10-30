@@ -43,7 +43,7 @@ export const workItemData: WorkItemType[] = [
     subtitle: "NFT Landing Page",
     year: "2024",
     role: "front - end developer",
-    image: "/images/restofinder-mockup.jpg",
+    image: "/images/ethereal-mockup.jpg",
     description:
       "Ethereal is an NFT landing page that allows users to connect their crypto wallets, including Rainbow and Coinbase Wallet, for a seamless Web3 experience.",
     yPercent: "-30",
@@ -147,7 +147,7 @@ export const detailWorkData = [
 <p>Explore the website here: <a href="https://restofinderproject.netlify.app/">Restofinder - Restaurant Catalogue</a></p>
 <p>View the GitHub repository here: <a href="https://github.com/juniarc/RestoFinder">Restofinder GitHub Repository</a></p>`,
   },
-   {
+  {
     id: 4,
     title: "ethereal",
     subtitle: "NFT Landing Page",
@@ -155,8 +155,8 @@ export const detailWorkData = [
     role: "front - end developer",
     institusion: "Personal Project",
     link: "https://ethereal-nu.vercel.app/",
-    image1: "/images/restofinder-mockup.jpg",
-    image2: "/images/restofinder-landingpage.jpg",
+    image1: "/images/ethereal-mockup.jpg",
+    image2: "/images/ethereal-landingpage.jpg",
     heading1: "Etheral - NFT Landing Page",
     desc1: `<p><strong>Ethereal</strong> is a landing page for a multi-chain NFT marketplace, designed to feel futuristic and immersive from the first scroll. The project aims to give a Web3 product a strong visual identity while still offering real functionality, allowing visitors to connect their wallet directly from the page instead of interacting with a static mockup.</p>
 <p>The design was created in <strong>Figma</strong>, covering the overall visual direction, layout, and reusable components for both <strong>desktop and mobile</strong>, with animation moments planned early so that motion would feel intentional rather than decorative.</p>
